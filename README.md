@@ -9,11 +9,11 @@ A daily mental health progress tracker — log your mood, sleep, stress, and mor
 
 ```
 ┌────────────────────────┐                      ┌────────────────────────┐
-│   Frontend (Vercel)     │                      │    Backend (Render)     │
-│   Next.js + React       │   HTTPS + WebSocket   │    Express + Socket.io  │
-│   Firebase Auth (UI)    │◀────────────────────▶│    Firebase Admin (verify)│
-│   Socket.io client      │                      │                          │
-└────────────────────────┘                      └───────────┬──────────────┘
+│   Frontend (Vercel)    │                      │   Backend (Render)     │
+│   Next.js + React      │   HTTPS + WebSocket  │   Express + Socket.io  │
+│   Firebase Auth (UI)   │◀───────────────────▶│ Firebase Admin (verify)│
+│   Socket.io client     │                      │                        │
+└────────────────────────┘                      └─────────────┬──────────┘
                                                               │
                                           ┌───────────────────┼───────────────────┐
                                           │                   │                   │
@@ -21,8 +21,8 @@ A daily mental health progress tracker — log your mood, sleep, stress, and mor
                                           │                   │                   │
                                           ▼                   ▼                   ▼
                                   ┌───────────────┐   ┌───────────────┐   ┌───────────────┐
-                                  │  Turso         │   │  Google Gemini │   │  Firebase      │
-                                  │  (libSQL DB)   │   │  (insight/chat)│   │  (Google login)│
+                                  │  Turso        │   │ Google Gemini │   │  Firebase     │
+                                  │  (libSQL DB)  │   │ (insight/chat)│   │ (Google login)│
                                   └───────────────┘   └───────────────┘   └───────────────┘
 ```
 
