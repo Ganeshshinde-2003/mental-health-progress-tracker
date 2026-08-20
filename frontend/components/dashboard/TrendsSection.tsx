@@ -59,7 +59,7 @@ export function TrendsSection({
       </div>
 
       <div className="trends-grid">
-        <div className={`card elev-md ${pulse ? "pulse" : ""}`} style={{ padding: "var(--space-6)" }}>
+        <div className={`card elev-md chart-card ${pulse ? "pulse" : ""}`}>
           <div className="card-kicker">Primary</div>
           <div
             style={{
@@ -83,9 +83,9 @@ export function TrendsSection({
             </span>
           </div>
           <ResponsiveContainer width="100%" height={260}>
-            <LineChart data={chartData}>
+            <LineChart data={chartData} margin={{ top: 4, right: 8, left: 0, bottom: 4 }}>
               <XAxis dataKey="date" stroke="var(--color-text)" fontSize={12} />
-              <YAxis domain={[1, 5]} stroke="var(--color-text)" fontSize={12} />
+              <YAxis domain={[1, 5]} stroke="var(--color-text)" fontSize={12} width={24} />
               <ChartTooltip {...CHART_TOOLTIP_STYLE} />
               <Line
                 type="monotone"
@@ -120,13 +120,13 @@ export function TrendsSection({
         </div>
       </div>
 
-      <div className="card elev-md" style={{ padding: "var(--space-6)" }}>
+      <div className="card elev-md chart-card">
         <div className="card-kicker">Supporting</div>
         <h4 style={{ margin: "0 0 var(--space-4)" }}>Sleep (hours)</h4>
         <ResponsiveContainer width="100%" height={200}>
           <BarChart data={chartData} margin={{ top: 8, right: 8, left: 0, bottom: 8 }}>
             <XAxis dataKey="date" stroke="var(--color-text)" fontSize={12} />
-            <YAxis domain={[0, 12]} stroke="var(--color-text)" fontSize={12} />
+            <YAxis domain={[0, 12]} stroke="var(--color-text)" fontSize={12} width={28} />
             <ChartTooltip {...CHART_TOOLTIP_STYLE} />
             <Bar dataKey="sleep" fill="var(--color-accent-400)" radius={[4, 4, 0, 0]} maxBarSize={28} />
           </BarChart>

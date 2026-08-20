@@ -171,6 +171,7 @@ input[type="radio"] { accent-color: var(--color-accent); }
 
 .trends-grid { display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-4); }
 .trends-side { display: flex; flex-direction: column; gap: var(--space-4); }
+.chart-card { padding: var(--space-6); }
 
 .error-banner {
   display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
@@ -187,6 +188,7 @@ input[type="radio"] { accent-color: var(--color-accent); }
   .trends-side { flex-direction: row; }
   .trends-side > * { flex: 1; }
   .dialog { padding: var(--space-3); }
+  .chart-card { padding: var(--space-4) var(--space-3); }
 }
 
 @media (max-width: 460px) {
