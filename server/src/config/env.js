@@ -18,6 +18,7 @@ const envSchema = z.object({
   FIREBASE_PROJECT_ID: z.string().min(1),
   FIREBASE_CLIENT_EMAIL: z.string().email(),
   FIREBASE_PRIVATE_KEY: z.string().min(1),
+  GEMINI_API_KEY: z.string().min(1),
 });
 
 const parsed = envSchema.safeParse(process.env);

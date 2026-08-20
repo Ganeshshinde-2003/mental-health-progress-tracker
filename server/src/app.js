@@ -8,6 +8,7 @@ import { env } from './config/env.js';
 import { db } from './db/index.js';
 import { authRoutes } from './routes/auth.routes.js';
 import { logRoutes } from './routes/log.routes.js';
+import { aiRoutes } from './routes/ai.routes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 export const app = express();
@@ -57,5 +58,6 @@ app.get('/health', async (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api', logRoutes);
+app.use('/api', aiRoutes);
 
 app.use(errorHandler);

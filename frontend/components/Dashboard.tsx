@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { useAuth } from "@/lib/auth-context";
 import { useLogs } from "@/lib/hooks/useLogs";
 import { useAccountActions } from "@/lib/hooks/useAccountActions";
+import { useInsight } from "@/lib/hooks/useInsight";
 import {
   getGreeting,
   filterToLastWeek,
@@ -15,6 +16,8 @@ import { LogWizard, type ExistingLog } from "./LogWizard";
 import { HeroBand } from "./dashboard/HeroBand";
 import { TrendsSection } from "./dashboard/TrendsSection";
 import { DeleteAccountDialog } from "./dashboard/DeleteAccountDialog";
+import { InsightCard } from "./dashboard/InsightCard";
+import { ChatWidget } from "./dashboard/ChatWidget";
 
 export function Dashboard() {
   const { user, signOut } = useAuth();
@@ -43,6 +46,8 @@ export function Dashboard() {
   const moodDelta = useMemo(() => computeDelta(chartData, "mood"), [chartData]);
   const anxietyDelta = useMemo(() => computeDelta(chartData, "anxiety"), [chartData]);
   const stressDelta = useMemo(() => computeDelta(chartData, "stress"), [chartData]);
+
+  const { insight, loading: insightLoading } = useInsight(logs.length);
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
@@ -80,17 +85,22 @@ export function Dashboard() {
             </button>
           </div>
         ) : (
-          <TrendsSection
-            range={range}
-            onRangeChange={setRange}
-            chartData={chartData}
-            pulse={pulse}
-            moodDelta={moodDelta}
-            anxietyDelta={anxietyDelta}
-            stressDelta={stressDelta}
-          />
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-4)" }}>
+            <InsightCard insight={insight} loading={insightLoading} />
+            <TrendsSection
+              range={range}
+              onRangeChange={setRange}
+              chartData={chartData}
+              pulse={pulse}
+              moodDelta={moodDelta}
+              anxietyDelta={anxietyDelta}
+              stressDelta={stressDelta}
+            />
+          </div>
         )}
       </div>
+
+      <ChatWidget />
 
       {logOpen && (
         <LogWizard

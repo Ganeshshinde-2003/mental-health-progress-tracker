@@ -27,6 +27,7 @@ export async function runMigrations() {
   // Additive column migrations for tables created before this column existed.
   // SQLite/libSQL has no "ADD COLUMN IF NOT EXISTS", so we probe and ignore duplicates.
   await addColumnIfMissing('users', 'consented_at', 'TEXT');
+  await addColumnIfMissing('users', 'chat_count', 'INTEGER NOT NULL DEFAULT 0');
 }
 
 async function addColumnIfMissing(table, column, type) {

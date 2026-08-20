@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { upsertLog, getLogsForUser, getAllLogsForUser } from '../services/log.service.js';
 import { emitNewLog } from '../sockets/index.js';
+import { invalidateInsight } from '../services/insight.service.js';
 
 export const logSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'date must be YYYY-MM-DD'),
@@ -26,6 +27,7 @@ export const logSchema = z.object({
 export async function createLog(req, res, next) {
   try {
     const saved = await upsertLog(req.user.id, req.body);
+    invalidateInsight(req.user.id);
     emitNewLog(req.user.firebase_uid, saved);
     res.status(201).json(saved);
   } catch (err) {
